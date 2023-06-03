@@ -1,13 +1,13 @@
-package com.mrodrigochaves.javamicroservices;
+package com.mrodrigochaves.employees;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class JavaMicroservicesApplication {
+public class Employees {
 
 	public static void main(String[] args) {
-		SpringApplication.run(JavaMicroservicesApplication.class, args);
+		SpringApplication.run(Employees.class, args);
 	}
 
 }
