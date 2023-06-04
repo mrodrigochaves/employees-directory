@@ -55,7 +55,17 @@ public class EmployeesServiceImpl implements EmployeesService {
         return Optional.empty();
     }
 
-    
+    @Override
+    public boolean delete(Long id) {
+            Optional<Employees> employees = repository.findById(id);
+            if(employees.isPresent()){
+                repository.deleteById(id);
+                return true;
+            }
+            return false;
+        }
+  
+
     
     
 }
