@@ -54,6 +54,16 @@ public class EmployeesServiceImpl implements EmployeesService {
     }
 
     @Override
+    public Optional<EmployeesDTO> getByName(String name) {
+        Optional<Employees> employees = repository.findByName(name);
+        if (employees.isPresent()) {
+            return Optional.of(mapper.map(employees.get(), EmployeesDTO.class));
+        }
+        return Optional.empty();
+    }
+
+
+    @Override
     public Optional<EmployeesDTO> update(Long id, EmployeesDTO request) {
         Optional<Employees> employees = repository.findById(id);
         if (employees.isPresent()) {
