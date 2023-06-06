@@ -53,6 +53,16 @@ public class EmployeesController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
+    @GetMapping("/sobrenome/{nome}")
+    public ResponseEntity<EmployeesDTO> getByName(@PathVariable("name") String name){
+        Optional<EmployeesDTO> response = service.getByName(name);
+
+        if( response.isPresent()){
+            return ResponseEntity.ok(response.get());
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<EmployeesDTO> update(@PathVariable("id") Long id, @RequestBody @Valid EmployeesDTO request){
         Optional<EmployeesDTO> response = service.update(id, request);
