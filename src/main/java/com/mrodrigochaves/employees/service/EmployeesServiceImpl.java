@@ -27,45 +27,57 @@ public class EmployeesServiceImpl implements EmployeesService {
         Employees employees = mapper.map(request, Employees.class);
         repository.saveAndFlush(employees);
 
-        EmployeesDTO response = mapper.map(employees, EmployeesDTO.class);
-
-        return Optional.of(response);
-     }
+        return Optional.of(mapper.map(employees, EmployeesDTO.class));
+    }
 
     @Override
     public List<EmployeesDTO> getAll() {
-        
+
         List<Employees> employee = repository.findAll();
 
         List<EmployeesDTO> responses = new ArrayList<>();
-
-        for(Employees employees : employee){
+        employee.forEach(employees -> {
             EmployeesDTO response = mapper.map(employees, EmployeesDTO.class);
-        }
-        return responses;    
-        
+            responses.add(response);
+        });
+        return responses;
+
     }
 
     @Override
     public Optional<EmployeesDTO> getById(Long id) {
         Optional<Employees> employees = repository.findById(id);
-        if(employees.isPresent()){
+        if (employees.isPresent()) {
             return Optional.of(mapper.map(employees.get(), EmployeesDTO.class));
         }
         return Optional.empty();
     }
 
     @Override
-    public boolean delete(Long id) {
-            Optional<Employees> employees = repository.findById(id);
-            if(employees.isPresent()){
-                repository.deleteById(id);
-                return true;
-            }
-            return false;
+    public Optional<EmployeesDTO> update(Long id, EmployeesDTO request) {
+        Optional<Employees> employees = repository.findById(id);
+        if (employees.isPresent()) {
+            employees.get().setDepartament(request.getDepartament());
+            employees.get().setTitle(request.getTitle());
+            repository.save(employees.get());
+            return Optional.of(mapper.map(employees.get(), EmployeesDTO.class));
         }
-  
+        return Optional.empty();
+    }
 
-    
-    
+    @Override
+    public void delete(Long id) {
+        repository.deleteById(id);
+    }
+
+    @Override
+    public boolean inactive(Long id) {
+        Optional<Employees> employees = repository.findById(id);
+        if (employees.isPresent()) {
+            employees.get().setAvailable(false);
+            return true;
+        }
+        return false;
+    }
+
 }
