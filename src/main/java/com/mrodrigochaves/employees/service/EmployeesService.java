@@ -23,4 +23,6 @@ public interface EmployeesService {
 
     boolean inactive(Long id);
 
+    Optional<EmployeesDTO> getByName(String name);
+
 }
