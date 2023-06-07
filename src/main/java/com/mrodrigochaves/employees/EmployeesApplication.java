@@ -26,6 +26,7 @@ public class EmployeesApplication {
 			e.setLastname("Mourinho");
 			e.setDepartament("Desenvolvimento de Softwares");
 			e.setTitle("Senior Java Developer");
+			e.setAvailable(true);
 
 			employeesRepository.save(e);
 		};
