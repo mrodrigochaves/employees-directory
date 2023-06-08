@@ -15,7 +15,6 @@ public class EmployeesApplication {
 		SpringApplication.run(EmployeesApplication.class, args);
 	}
 
-
 	@Bean
 	CommandLineRunner initDataBase(EmployeesRepository employeesRepository){
 		return args ->{
@@ -26,12 +25,9 @@ public class EmployeesApplication {
 			e.setLastname("Mourinho");
 			e.setDepartament("Desenvolvimento de Softwares");
 			e.setTitle("Senior Java Developer");
-			e.setAvailable(true);
 
 			employeesRepository.save(e);
 		};
 
 	}
-
-
 }
