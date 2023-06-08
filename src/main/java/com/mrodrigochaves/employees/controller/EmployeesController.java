@@ -31,7 +31,8 @@ public class EmployeesController {
 
     @GetMapping
     public ResponseEntity<List<EmployeesDTO>> getAll() {
-        return ResponseEntity.ok(service.getAll());
+        List<EmployeesDTO> employees = service.getAll();
+        return ResponseEntity.ok(employees);
     }
 
     @GetMapping("/{id}")
@@ -42,31 +43,50 @@ public class EmployeesController {
     }
 
     @GetMapping("/lastname/{name}")
-    public ResponseEntity<EmployeesDTO> getByName(@PathVariable("name") String name) {
-        Optional<EmployeesDTO> response = service.getByName(name);
-        return response.map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<List<EmployeesDTO>> getByLastName(@PathVariable("name") String name) {
+        List<EmployeesDTO> employees = service.getByLastName(name);
+        if (!employees.isEmpty()) {
+            return ResponseEntity.ok(employees);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/departament/{name}")
+    public ResponseEntity<List<EmployeesDTO>> getByDepartament(@PathVariable("name") String name) {
+        List<EmployeesDTO> employees = service.getByDepartament(name);
+        if (!employees.isEmpty()) {
+            return ResponseEntity.ok(employees);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/title/{name}")
+    public ResponseEntity<List<EmployeesDTO>> getByTitle(@PathVariable("name") String name) {
+        List<EmployeesDTO> employees = service.getByTitle(name);
+        if (!employees.isEmpty()) {
+            return ResponseEntity.ok(employees);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<EmployeesDTO> update(@PathVariable("id") Long id, @RequestBody @Valid EmployeesDTO request) {
         Optional<EmployeesDTO> response = service.update(id, request);
-        return response.map(dto -> new ResponseEntity<>(dto, HttpStatus.CREATED))
-                .orElse(ResponseEntity.badRequest().build());
+        return response.map(dto -> new ResponseEntity<>(dto, HttpStatus.OK))
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
-        service.delete(id);
-        return ResponseEntity.ok().build();
-    }
-
-    @DeleteMapping("/inactive/{id}")
-    public ResponseEntity<Void> inactive(@PathVariable("id") Long id) {
-        boolean inactive = service.inactive(id);
-        return inactive
-                ? ResponseEntity.noContent().build()
-                : ResponseEntity.notFound().build();
+        boolean deleted = service.delete(id);
+        if (deleted) {
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PostMapping
