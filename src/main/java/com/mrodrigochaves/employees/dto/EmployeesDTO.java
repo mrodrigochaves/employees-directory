@@ -1,26 +1,15 @@
 package com.mrodrigochaves.employees.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
-import lombok.Data;
 
-@Data
-public class EmployeesDTO {
-
-    @NotNull
-	@Size(min=2, max=30)
-    private String name;
-
-    @NotNull
-	@Size(min=2, max=30)
-    private String lastname;
-
-    @NotNull
-	@Size(min=2, max=30)
-    private String departament;
-
-    @NotNull
-	@Size(min=2, max=30)
-    private String title;
+public record EmployeesDTO(
+    @JsonProperty("_id") Long id,
+    @NotBlank @NotNull String name,
+    @NotBlank @NotNull String lastname,
+    @NotBlank @NotNull String departament,
+    @NotBlank @NotNull String title) {
     
 }
