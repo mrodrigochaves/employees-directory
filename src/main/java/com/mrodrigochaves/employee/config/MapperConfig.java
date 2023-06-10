@@ -1,4 +1,4 @@
-package com.mrodrigochaves.employees.config;
+package com.mrodrigochaves.employee.config;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

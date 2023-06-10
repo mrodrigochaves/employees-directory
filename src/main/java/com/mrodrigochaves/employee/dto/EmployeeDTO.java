@@ -1,4 +1,4 @@
-package com.mrodrigochaves.employees.dto;
+package com.mrodrigochaves.employee.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

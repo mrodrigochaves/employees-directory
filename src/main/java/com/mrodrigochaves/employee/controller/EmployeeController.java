@@ -1,4 +1,4 @@
-package com.mrodrigochaves.employees.controller;
+package com.mrodrigochaves.employee.controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,37 +14,37 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mrodrigochaves.employees.dto.EmployeesDTO;
-import com.mrodrigochaves.employees.service.EmployeesService;
+import com.mrodrigochaves.employee.dto.EmployeeDTO;
+import com.mrodrigochaves.employee.service.EmployeeService;
 
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/employees")
-public class EmployeesController {
+public class EmployeeController {
 
-    private final EmployeesService service;
+    private final EmployeeService service;
 
-    public EmployeesController(EmployeesService service) {
+    public EmployeeController(EmployeeService service) {
         this.service = service;
     }
 
     @GetMapping
-    public ResponseEntity<List<EmployeesDTO>> getAll() {
-        List<EmployeesDTO> employees = service.getAll();
+    public ResponseEntity<List<EmployeeDTO>> getAll() {
+        List<EmployeeDTO> employees = service.getAll();
         return ResponseEntity.ok(employees);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<EmployeesDTO> getById(@PathVariable("id") Long id) {
-        Optional<EmployeesDTO> response = service.getById(id);
+    public ResponseEntity<EmployeeDTO> getById(@PathVariable("id") Long id) {
+        Optional<EmployeeDTO> response = service.getById(id);
         return response.map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping("/lastname/{name}")
-    public ResponseEntity<List<EmployeesDTO>> getByLastName(@PathVariable("name") String name) {
-        List<EmployeesDTO> employees = service.getByLastName(name);
+    public ResponseEntity<List<EmployeeDTO>> getByLastName(@PathVariable("name") String name) {
+        List<EmployeeDTO> employees = service.getByLastName(name);
         if (!employees.isEmpty()) {
             return ResponseEntity.ok(employees);
         } else {
@@ -53,8 +53,8 @@ public class EmployeesController {
     }
 
     @GetMapping("/departament/{name}")
-    public ResponseEntity<List<EmployeesDTO>> getByDepartament(@PathVariable("name") String name) {
-        List<EmployeesDTO> employees = service.getByDepartament(name);
+    public ResponseEntity<List<EmployeeDTO>> getByDepartament(@PathVariable("name") String name) {
+        List<EmployeeDTO> employees = service.getByDepartament(name);
         if (!employees.isEmpty()) {
             return ResponseEntity.ok(employees);
         } else {
@@ -63,8 +63,8 @@ public class EmployeesController {
     }
 
     @GetMapping("/title/{name}")
-    public ResponseEntity<List<EmployeesDTO>> getByTitle(@PathVariable("name") String name) {
-        List<EmployeesDTO> employees = service.getByTitle(name);
+    public ResponseEntity<List<EmployeeDTO>> getByTitle(@PathVariable("name") String name) {
+        List<EmployeeDTO> employees = service.getByTitle(name);
         if (!employees.isEmpty()) {
             return ResponseEntity.ok(employees);
         } else {
@@ -73,8 +73,8 @@ public class EmployeesController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<EmployeesDTO> update(@PathVariable("id") Long id, @RequestBody @Valid EmployeesDTO request) {
-        Optional<EmployeesDTO> response = service.update(id, request);
+    public ResponseEntity<EmployeeDTO> update(@PathVariable("id") Long id, @RequestBody @Valid EmployeeDTO request) {
+        Optional<EmployeeDTO> response = service.update(id, request);
         return response.map(dto -> new ResponseEntity<>(dto, HttpStatus.OK))
                 .orElse(ResponseEntity.notFound().build());
     }
@@ -90,8 +90,8 @@ public class EmployeesController {
     }
 
     @PostMapping
-    public ResponseEntity<EmployeesDTO> create(@RequestBody @Valid EmployeesDTO request) {
-        Optional<EmployeesDTO> response = service.create(request);
+    public ResponseEntity<EmployeeDTO> create(@RequestBody @Valid EmployeeDTO request) {
+        Optional<EmployeeDTO> response = service.create(request);
         return response.map(dto -> new ResponseEntity<>(dto, HttpStatus.CREATED))
                 .orElse(ResponseEntity.badRequest().build());
     }

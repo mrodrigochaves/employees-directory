@@ -8,42 +8,44 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mrodrigochaves.employee.dto.EmployeesDTO;
+import com.mrodrigochaves.employee.dto.EmployeeDTO;
 import com.mrodrigochaves.employee.model.Employee;
 import com.mrodrigochaves.employee.repository.EmployeeRepository;
 
+import jakarta.validation.Valid;
+
 @Service
-public class EmployeesServiceImpl implements EmployeesService {
+public class EmployeeServiceImpl implements EmployeeService {
 
     private final EmployeeRepository repository;
     private final ModelMapper mapper;
 
     @Autowired
-    public EmployeesServiceImpl(EmployeeRepository repository, ModelMapper mapper) {
+    public EmployeeServiceImpl(EmployeeRepository repository, ModelMapper mapper) {
         this.repository = repository;
         this.mapper = mapper;
     }
 
     @Override
-    public Optional<EmployeesDTO> create(EmployeesDTO request) {
+    public Optional<EmployeeDTO> create(EmployeeDTO request) {
         Employee employee = mapper.map(request, Employee.class);
         employee = repository.save(employee);
-        return Optional.ofNullable(mapper.map(employee, EmployeesDTO.class));
+        return Optional.ofNullable(mapper.map(employee, EmployeeDTO.class));
     }
 
     @Override
-    public List<EmployeesDTO> getAll() {
+    public List<EmployeeDTO> getAll() {
         List<Employee> employee = repository.findAll();
-        List<EmployeesDTO> responses = new ArrayList<>();
+        List<EmployeeDTO> responses = new ArrayList<>();
         employee.forEach(employees -> {
-            EmployeesDTO response = mapper.map(employees, EmployeesDTO.class);
+            EmployeeDTO response = mapper.map(employees, EmployeeDTO.class);
             responses.add(response);
         });
         return responses;
     }
 
     @Override
-    public Optional<EmployeesDTO> getById(Long id) {
+    public Optional<EmployeeDTO> getById(Long id) {
         Optional<Employee> employee = repository.findById(id);
         return employee.map(e -> mapper.map(e, EmployeeDTO.class));
     }
@@ -51,12 +53,12 @@ public class EmployeesServiceImpl implements EmployeesService {
     @Override
     public Optional<EmployeeDTO> update(Long id, EmployeeDTO request) {
         Optional<Employee> employees = repository.findById(id);
-        if (employee.isPresent()) {
-            Employee employee = employee.get();
-            employee.setDepartament(request.departament());
+        if (employees.isPresent()) {
+            Employee employee = employee.getId();
+            employee.setDepartment(request.departament());
             employee.setTitle(request.title());
             repository.save(employee);
-            return Optional.of(mapper.map(employee, EmployeesDTO.class));
+            return Optional.of(mapper.map(employee, EmployeeDTO.class));
         }
         return Optional.empty();
     }
@@ -71,33 +73,33 @@ public class EmployeesServiceImpl implements EmployeesService {
     }
 
     @Override
-    public List<EmployeesDTO> getByLastName(String name) {
-        List<Employees> employees = repository.findByLastName(name);
-        List<EmployeesDTO> responses = new ArrayList<>();
+    public List<EmployeeDTO> getByLastName(String name) {
+        List<Employee> employees = repository.findByLastName(name);
+        List<EmployeeDTO> responses = new ArrayList<>();
         employees.forEach(employee -> {
-            EmployeesDTO response = mapper.map(employee, EmployeesDTO.class);
+            EmployeeDTO response = mapper.map(employee, EmployeeDTO.class);
             responses.add(response);
         });
         return responses;
     }
 
     @Override
-    public List<EmployeesDTO> getByDepartament(String name) {
-        List<Employees> employees = repository.findByDepartament(name);
-        List<EmployeesDTO> responses = new ArrayList<>();
+    public List<EmployeeDTO> getByDepartament(String name) {
+        List<Employee> employees = repository.findByDepartment(name);
+        List<EmployeeDTO> responses = new ArrayList<>();
         employees.forEach(employee -> {
-            EmployeesDTO response = mapper.map(employee, EmployeesDTO.class);
+            EmployeeDTO response = mapper.map(employee, EmployeeDTO.class);
             responses.add(response);
         });
         return responses;
     }
 
     @Override
-    public List<EmployeesDTO> getByTitle(String name) {
-        List<Employees> employees = repository.findByTitle(name);
-        List<EmployeesDTO> responses = new ArrayList<>();
+    public List<EmployeeDTO> getByTitle(String name) {
+        List<Employee> employees = repository.findByTitle(name);
+        List<EmployeeDTO> responses = new ArrayList<>();
         employees.forEach(employee -> {
-            EmployeesDTO response = mapper.map(employee, EmployeesDTO.class);
+            EmployeeDTO response = mapper.map(employee, EmployeeDTO.class);
             responses.add(response);
         });
         return responses;

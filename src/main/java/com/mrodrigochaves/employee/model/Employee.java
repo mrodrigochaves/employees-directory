@@ -17,5 +17,11 @@ public class Employee {
     private String lastName;
     private String department;
     private String title;
+    public Employee get() {
+        return null;
+    }
+    public Employee getById() {
+        return null;
+    }
 
 }
