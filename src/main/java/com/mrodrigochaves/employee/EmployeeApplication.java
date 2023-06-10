@@ -9,10 +9,6 @@ import org.springframework.context.annotation.Bean;
 import com.mrodrigochaves.employee.model.Employee;
 import com.mrodrigochaves.employee.repository.EmployeeRepository;
 
-import jakarta.persistence.Id;
-
-
-
 
 @SpringBootApplication
 public class EmployeeApplication {
