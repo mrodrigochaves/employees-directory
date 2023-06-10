@@ -16,13 +16,13 @@ O back-end REST é implementado em Java usando o servidor Helidon. O servidor im
 | Ponto Final        | Método                     | Descrição                  |              
 |-------------------:|----------------------------|:--------------------------:|
 |/                   | GET                           |<p>Obter todos os funcionários</p> |
-|/sobrenome/{name}   | GET                           |<p>Pesquise todos os campos lastname para o valor fornecido em "name"</p>| 
-|/departamento/{name}| GET                           |<p>Pesquise todos os campos department para o valor informado em "nome".</p>                            |
-|/título/{name}      | GET                           |<p>Pesquise todos os campos title para o valor fornecido em "nome".</p>                            |
+|/lastname/{name}   | GET                           |<p>Pesquise todos os campos lastname para o valor fornecido em "name"</p>| 
+|/department/{name}| GET                           |<p>Pesquise todos os campos department para o valor informado em "name".</p>                            |
+|/title/{name}      | GET                           |<p>Pesquise todos os campos title para o valor fornecido em "nome".</p>                            |
 |/                   | POST                           |<p>Adicionar um novo funcionário.</p>                            |
 |/{id}               | GET                           |<p>Obter um funcionário por ID.</p>                           |
 |/{id}               | UPDATE                           |<p>Atualizar um funcionário por ID.</p>                            |
-|/{id}               | EXCLUIR                           |<p>Excluir um Funcionário com base no ID.</p>                            |
+|/{id}               | DELETE                           |<p>delete um Funcionário com base no ID.</p>                            |
 
 
 Fonte de inspiração: [Oracle](https://docs.oracle.com/pt-br/solutions/develop-microservice-java-app/index.html#GUID-AE46D8CC-8156-4C5D-869A-A488C056F359)
