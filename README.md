@@ -10,8 +10,19 @@ O aplicativo RESTful que você cria é um aplicativo simples do Diretório de Fu
 O aplicativo tem duas partes principais.
 
 Um back end de microsserviços (escrito em Java)
-Um cliente de serviço Web (escrito em HTML, CSS e JavaScript)
+Um cliente de serviço Web (escrito em HTML, CSS e JavaScript(React)
 As duas partes demonstram como um front-end interage com um back-end de microsserviços.
+
+Aqui você pode conferir [Front-End](https://github.com/mrodrigochaves/front-employees)
+
+## Funcionalidades
+  Cadastro de Funcionários: Permite adicionar informações de novos funcionários ao diretório, incluindo nome, cargo, departamento;
+
+  Atualização de Funcionários: Possibilita a atualização dos dados de um funcionário já cadastrado no diretório. É possível modificar informações como cargo, departamento;
+
+  Exclusão de Funcionários: Permite a remoção de funcionários do diretório.
+
+  Consulta de Funcionários: Permite pesquisar e visualizar informações de funcionários cadastrados no diretório. É possível filtrar a busca por nome, cargo ou departamento.
 
 ## Sobre o Serviço REST
 O back-end REST é implementado em Java usando o servidor Helidon. O servidor implementa algumas operações de pesquisa com operações padrão de criação, leitura, atualização e exclusão (CRUD). A lista de pontos finais inclui:
