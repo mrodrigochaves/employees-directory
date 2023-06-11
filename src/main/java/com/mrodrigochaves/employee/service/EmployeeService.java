@@ -6,8 +6,8 @@ import java.util.Optional;
 import com.mrodrigochaves.employee.dto.EmployeeDTO;
 
 import jakarta.validation.Valid;
+
 public interface EmployeeService {
-    
 
     List<EmployeeDTO> getAll();
 
@@ -24,6 +24,5 @@ public interface EmployeeService {
     Optional<EmployeeDTO> update(Long id, @Valid EmployeeDTO request);
 
     Optional<EmployeeDTO> deleteById(Long id);
-
 
 }
