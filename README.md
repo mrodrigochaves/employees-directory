@@ -25,7 +25,7 @@ Aqui você pode conferir [Front-End](https://github.com/mrodrigochaves/front-emp
   Consulta de Funcionários: Permite pesquisar e visualizar informações de funcionários cadastrados no diretório. É possível filtrar a busca por nome, cargo ou departamento.
 
 ## Sobre o Serviço REST
-O back-end REST é implementado em Java usando o servidor Helidon. O servidor implementa algumas operações de pesquisa com operações padrão de criação, leitura, atualização e exclusão (CRUD). A lista de pontos finais inclui:
+O back-end REST é implementado em Java usando o servidor Mysql. O servidor implementa algumas operações de pesquisa com operações padrão de criação, leitura, atualização e exclusão (CRUD). A lista de pontos finais inclui:
 
 | Ponto Final        | Método                     | Descrição                  |              
 |-------------------:|----------------------------|:--------------------------:|
